@@ -1,0 +1,2055 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>KAIST AI Capstone</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+
+		<script src="https://d3js.org/d3.v5.min.js"></script>
+		<script src="assets/js/chart_combination.js"></script>
+		<script src="assets/js/c3.js"></script>
+		<script src="assets/js/c3.min.js"></script>
+		<link href="assets/css/c3.css" rel="stylesheet">
+		<script src="assets/js/gauge.js"></script>
+
+		<link href="assets/css/css-circular-prog-bar.css" media="all" rel="stylesheet" />
+
+<!-- google chart start -->
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script type="text/javascript">
+		  google.charts.load('current', {'packages':['corechart']});
+		  google.charts.setOnLoadCallback(drawVisualization);
+	
+		  function drawVisualization() {
+			// Some raw data (not necessarily accurate)
+			var data = google.visualization.arrayToDataTable([
+			  ['Month', 'Bolivia', 'Average'],
+			  ['2004/05', 165, 165],
+			  ['2005/06', 135, 135],
+			  ['2006/07', 157, 157],
+			  ['2007/08', 139, 159],
+			  ['2008/09', 136, 156]
+			]);
+	
+			var options = {
+			  title : 'Monthly Coffee Production by Country',
+			  vAxis: {title: 'Cups'},
+			  hAxis: {title: 'Month'},
+			  seriesType: 'bars',
+			  series: {1: {type: 'line'}}
+			};
+			
+			var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+			chart.draw(data, options);
+
+			var test_data = [];
+			var index = [];			
+
+			var row = [];
+			row.push('test');
+			row.push('voltage');
+			row.push('current');
+			test_data.push(row);
+			row = [];
+			row.push('1');
+			row.push(100);
+			row.push(130);
+			test_data.push(row);
+			row = [];
+			row.push('2');
+			row.push(110);
+			row.push(140);
+			test_data.push(row);
+			row = [];
+			// data1.push('voltage');
+			// data1.push(100);
+			// data1.push(110);
+			// data1.push(120);
+			// data2.push('current');
+			// data2.push(130);
+			// data2.push(140);
+			// data2.push(150);
+			// test_data[0].push(index);
+			// test_data[1].push(data1);
+			// test_data[2].push(data2);
+			// alert(test_data);
+			// chart.draw(test_data, options);
+			chart.draw(google.visualization.arrayToDataTable(test_data), options);
+		  }
+		</script>
+<!-- google chart end -->
+
+		<style>
+			.c {
+				color: white;	
+				background-color: #4696e5;
+				margin: 0% 50% 0% 10%; 				
+				padding: 10px 10px 10px 10px;						
+			}
+			
+			.container-progress {
+            	background-color: rgb(192, 192, 192);
+            	width: 100%;
+                border-radius: 15px;
+        	}
+			.main-title {
+				background-color: #4696e5;
+				height: 32px;
+				padding-top: 4px;
+				font-size: 20px;
+				color: white;	
+			}
+			.total-row {
+				height: 110px;				
+			}
+			.total-txt {
+				width: 15%;
+				/* height: 80px; */
+				float: left;
+				font-size: 26px;
+				color: black;
+				text-align: center;
+				padding-top: 35px;			
+				/* align-items: center; */
+				/* justify-content: center;
+				display: flex; */
+			}
+			.total-progressbar {
+				width: 50%; 
+				float: left;
+				padding-top: 20px;
+				padding-left: 5%;
+				padding-right: 5%;
+				text-align: center;
+			}
+			.total-progressbar-1 {
+				/* background-color: rgb(116, 194, 92); */
+				/* background-color: rgb(64, 64, 64); */
+				/* background-color: rgb(153, 0, 153); */
+				background-color: rgb(204, 0, 204);
+				height:25px;
+				color: white;
+				padding: 1%;
+				text-align: right;
+				font-size: 20px;
+                border-radius: 15px;				
+        	}
+			.total-gauge {
+				width:20%; 
+				float:left;
+				/* text-align: center; */
+			}
+			.total-alarm {
+				width: 15%; 
+				padding-top: 26px;
+				float: left;
+				text-align: center;
+			}
+			.total-alarm-1 {
+				height: 70px;
+				
+			}
+			.total-weld-image {
+				width: 100%;
+				text-align: center;
+			}
+			.total-weld-image-1 {
+				height:30px; 
+				background-size: 100%; 
+				background-position: center;
+			}
+			.total-weld-image-2 {				
+				height:30px;
+			}
+			.chart-txt {
+				padding: 6px 5px 1px 5px; 
+				background-color: #4696e5; 
+				font-family: Courier New; 
+				font-size: 20px; 
+				color: white;				
+			}
+			.chart {
+				background-color:rgb(225, 225, 225, 0.35); 
+				width:90%; 
+				height:240px; 
+				padding-top:10px;
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+							<!-- <div style="background-color:rgb(0,0,102); height: 160px; ">
+								<center>				
+								<h1 style="background-color: rgb(0,0,102);font-size: 38px; padding-top:24px;"><strong style="color: white">KAIST AI Capstone</strong></h1>
+								<p style="font-size:28px; color:white;">용접 품질 모니터링 시스템</p>
+								</center>
+							</div> -->
+
+							
+								<header id="header">
+									<a href="#" class="logo"><strong><div id="main_txt">전체 용접 상태</div></strong></a>
+									<!-- <ul class="icons">
+										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+										<li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
+										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+										<li><a href="#" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>
+									</ul> -->
+								</header>
+
+								<div id="menu_total" style="display: block;">
+
+								<button onclick="chartLoad_1()">Weld_1 Data Load</button>
+								<button onclick="chartLoad_2()">Weld_2 Data Load</button>
+								<button onclick="chartLoad_3()">Weld_3 Data Load</button>
+								<button onclick="chartLoad_4()">Weld_4 Data Load</button>
+								<br>
+								
+								
+								<br>								
+								<div style="height: 30px; padding-top: 5px; font-size: 22px; color: black; text-align:center;"><strong>
+									<div style="width: 15%;	float: left;">
+										용접기
+									</div>
+									<div style="width: 50%;	float: left;">
+										작업진행률
+									</div>
+									<div style="width: 20%;	float: left;">
+										이상치
+									</div>
+									<div style="width: 15%;	float: left;">
+										정상/결함
+									</div>
+								</strong></div>
+								<hr>
+<!-- 용접1 -->								
+								<div class="total-row">
+									<div class="total-txt">
+										용접1
+									</div>
+									<div class="total-progressbar">
+										<div class="container-progress" onclick ="detail_display_1()">
+											<div id="progress_bar_1" class="total-progressbar-1" style="width:40%;"></div>
+										</div>
+										<div class="total-weld-image">
+											<br>
+											<div class="total-weld-image-1" style="background-image: url('images/welding.png');">
+												<img id="welding_pic_1" align="right" src="images/bg_box.jpg" class="total-weld-image-2" style="width: 60%;"></img>							
+											</div>
+										</div>
+									</div>
+									<div class="total-gauge"><center>
+										<div id="gauge_1_class" class="progress-circle p10">
+											<span id="gauge_1_value">10%</span>
+											<div class="left-half-clipper">
+											<div class="first50-bar"></div>
+											<div class="value-bar"></div>
+											</div>
+										</div></center>
+									</div>
+									<div class="total-alarm">
+										<img id="status_indicator_1" src="images/green_circle.jpg" class="total-alarm-1">
+									</div>
+								</div>
+								<hr>
+<!-- 용접2 -->
+								<div class="total-row">
+									<div class="total-txt">
+										용접2
+									</div>
+									<div class="total-progressbar">
+										<div class="container-progress" onclick ="detail_display_2()">
+											<div id="progress_bar_2" class="total-progressbar-1" style="width:18%;"></div>
+										</div>
+										<div class="total-weld-image">
+											<br>
+											<div class="total-weld-image-1" style="background-image: url('images/welding.png');">
+												<img id="welding_pic_2" align="right" src="images/bg_box.jpg" style="width: 82%;" class="total-weld-image-2" ></img>							
+											</div>
+										</div>
+									</div>
+									<div class="total-gauge"><center>
+										<div id="gauge_2_class" class="progress-circle p20">
+											<span id="gauge_2_value">20%</span>
+											<div class="left-half-clipper">
+											<div class="first50-bar"></div>
+											<div class="value-bar"></div>
+											</div>
+										</div></center>
+									</div>
+									<div class="total-alarm">
+										<img id="status_indicator_2" src="images/green_circle.jpg" class="total-alarm-1">
+									</div>
+								</div>
+								<hr>
+<!-- 용접3 -->
+								<div class="total-row">
+									<div class="total-txt">
+										용접3
+									</div>
+									<div class="total-progressbar">
+										<div class="container-progress" onclick ="detail_display_3()">
+											<div id="progress_bar_3" class="total-progressbar-1" style="width:66.3%;"></div>
+										</div>
+										<div class="total-weld-image">
+											<br>
+											<div class="total-weld-image-1" style="background-image: url('images/welding.png');">
+												<img id="welding_pic_3" align="right" src="images/bg_box.jpg" style="width: 33.7%;" class="total-weld-image-2" ></img>							
+											</div>
+										</div>
+									</div>
+									<div class="total-gauge"><center>
+										<div id="gauge_3_class" class="progress-circle p30">
+											<span id="gauge_3_value">30%</span>
+											<div class="left-half-clipper">
+											<div class="first50-bar"></div>
+											<div class="value-bar"></div>
+											</div>
+										</div></center>
+									</div>
+									<div class="total-alarm">
+										<img id="status_indicator_3" src="images/green_circle.jpg" class="total-alarm-1">
+									</div>
+								</div>
+								<hr>
+<!-- 용접4 -->
+								<div class="total-row">
+									<div class="total-txt">
+										용접4
+									</div>
+									<div class="total-progressbar">
+										<div class="container-progress" onclick ="detail_display_4()">
+											<div id="progress_bar_4" class="total-progressbar-1" style="width:50%;"></div>
+										</div>
+										<div class="total-weld-image">
+											<br>
+											<div class="total-weld-image-1" style="background-image: url('images/welding.png');">
+												<img id="welding_pic_4" align="right" src="images/bg_box.jpg" style="width: 50%;" class="total-weld-image-2" ></img>							
+											</div>
+										</div>
+									</div>
+									<div class="total-gauge"><center>
+										<div id="gauge_4_class" class="progress-circle p40">
+											<span id="gauge_4_value">40%</span>
+											<div class="left-half-clipper">
+											<div class="first50-bar"></div>
+											<div class="value-bar"></div>
+											</div>
+										</div></center>
+									</div>
+									<div class="total-alarm">
+										<img id="status_indicator_4" src="images/green_circle.jpg" class="total-alarm-1">
+									</div>
+								</div>
+								<hr>
+							</div>
+
+							<!-- sub menu weld-1 -->
+							<div id="menu_weld_1" style="display:none">
+								<div style="height:80px; margin-top:30px">
+									<div style="width:50%; float:left; height:60px;">
+										<h2 class="chart-txt" style="width:20%"><center>전압</center></h2>
+									</div>
+									<div style="width:50%; float:left; height:60px;">
+										<h2 class="chart-txt" style="width:20%"><center>전류</center></h2>
+									</div>
+								</div>
+								<div style="height:240px;">
+									<div style="width:50%; float:left;">
+										<div id="chart_1_1" class="chart"></div>
+									</div>
+									<div style="width:50%; float:left;">
+										<div id="chart_1_2" class="chart"></div>
+									</div>
+								</div>
+								<hr>
+								<div style="height:80px; margin-top:30px">
+									<div style="width:50%; float:left;">
+										<h2 class="chart-txt" style="width:25%"><center>보호가스</center></h2>
+									</div>
+									<div style="width:50%; float:left;">
+										<h2 class="chart-txt" style="width:35%"><center>와이어 송급속도</center></h2>
+									</div>
+								</div>
+								<div style="height:240px;">
+									<div style="width:50%; float:left;">
+										<div id="chart_1_3" class="chart"></div>
+									</div>
+									<div style="width:50%; float:left;">
+										<div id="chart_1_4" class="chart"></div>
+									</div>
+								</div>
+								<div>
+									
+								</div>
+							</div>
+
+							<!-- sub menu weld-2 -->
+							<div id="menu_weld_2" style="display:none">
+								<div style="height:80px; margin-top:30px">
+									<div style="width:50%; float:left; height:60px;">
+										<h2 class="chart-txt" style="width:20%"><center>전압</center></h2>
+									</div>
+									<div style="width:50%; float:left; height:60px;">
+										<h2 class="chart-txt" style="width:20%"><center>전류</center></h2>
+									</div>
+								</div>
+								<div style="height:240px;">
+									<div style="width:50%; float:left;">
+										<div id="chart_2_1" class="chart"></div>
+									</div>
+									<div style="width:50%; float:left;">
+										<div id="chart_2_2" class="chart"></div>
+									</div>
+								</div>
+								<hr>
+								<div style="height:80px; margin-top:30px">
+									<div style="width:50%; float:left;">
+										<h2 class="chart-txt" style="width:25%"><center>보호가스</center></h2>
+									</div>
+									<div style="width:50%; float:left;">
+										<h2 class="chart-txt" style="width:35%"><center>와이어 송급속도</center></h2>
+									</div>
+								</div>
+								<div style="height:240px;">
+									<div style="width:50%; float:left;">
+										<div id="chart_2_3" class="chart"></div>
+									</div>
+									<div style="width:50%; float:left;">
+										<div id="chart_2_4" class="chart"></div>
+									</div>
+								</div>
+								<div>
+									
+								</div>
+							</div>							
+
+							<!-- sub menu weld-3 -->
+							<div id="menu_weld_3" style="display:none">
+								<div style="height:80px; margin-top:30px">
+									<div style="width:50%; float:left; height:60px;">
+										<h2 class="chart-txt" style="width:20%"><center>전압</center></h2>
+									</div>
+									<div style="width:50%; float:left; height:60px;">
+										<h2 class="chart-txt" style="width:20%"><center>전류</center></h2>
+									</div>
+								</div>
+								<div style="height:240px;">
+									<div style="width:50%; float:left;">
+										<div id="chart_3_1" class="chart"></div>
+									</div>
+									<div style="width:50%; float:left;">
+										<div id="chart_3_2" class="chart"></div>
+									</div>
+								</div>
+								<hr>
+								<div style="height:80px; margin-top:30px">
+									<div style="width:50%; float:left;">
+										<h2 class="chart-txt" style="width:25%"><center>보호가스</center></h2>
+									</div>
+									<div style="width:50%; float:left;">
+										<h2 class="chart-txt" style="width:35%"><center>와이어 송급속도</center></h2>
+									</div>
+								</div>
+								<div style="height:240px;">
+									<div style="width:50%; float:left;">
+										<div id="chart_3_3" class="chart"></div>
+									</div>
+									<div style="width:50%; float:left;">
+										<div id="chart_3_4" class="chart"></div>
+									</div>
+								</div>
+								<div>
+									
+								</div>
+							</div>							
+
+							<!-- sub menu weld-4 -->
+							<div id="menu_weld_4" style="display:none">
+								<div style="height:80px; margin-top:30px">
+									<div style="width:50%; float:left; height:60px;">
+										<h2 class="chart-txt" style="width:20%"><center>전압</center></h2>
+									</div>
+									<div style="width:50%; float:left; height:60px;">
+										<h2 class="chart-txt" style="width:20%"><center>전류</center></h2>
+									</div>
+								</div>
+								<div style="height:240px;">
+									<div style="width:50%; float:left;">
+										<div id="chart_4_1" class="chart"></div>
+									</div>
+									<div style="width:50%; float:left;">
+										<div id="chart_4_2" class="chart"></div>
+									</div>
+								</div>
+								<hr>
+								<div style="height:80px; margin-top:30px">
+									<div style="width:50%; float:left;">
+										<h2 class="chart-txt" style="width:25%"><center>보호가스</center></h2>
+									</div>
+									<div style="width:50%; float:left;">
+										<h2 class="chart-txt" style="width:35%"><center>와이어 송급속도</center></h2>
+									</div>
+								</div>
+								<div style="height:240px;">
+									<div style="width:50%; float:left;">
+										<div id="chart_4_3" class="chart"></div>
+									</div>
+									<div style="width:50%; float:left;">
+										<div id="chart_4_4" class="chart"></div>
+									</div>
+								</div>
+								<div>
+									
+								</div>
+							</div>							
+
+							<!-- sub menu 작업현장 -->
+							
+							<div id="menu_video" style="display:none">
+								<br><br>
+								<div><center><video width="95%" src="./welding.mp4" autoplay muted loop></video></center></div>								
+							</div>
+
+							
+<!-- google chart test -->
+							<div style="height:80px; margin-top:30px">
+								<div style="width:50%; float:left; height:60px;">
+									<h2 class="chart-txt" style="width:20%"><center>전압</center></h2>
+								</div>
+								<div style="width:50%; float:left; height:60px;">
+									<h2 class="chart-txt" style="width:20%"><center>전류</center></h2>
+								</div>
+							</div>
+							<div style="height:240px;">
+								<div style="width:50%; float:left;">
+									<div id="chart_div" class="chart"></div>
+								</div>
+								<div style="width:50%; float:left;">
+									
+								</div>
+							</div>
+<!-- google chart test -->
+
+
+							<!-- Banner -->
+								<!-- <section id="banner">
+									<div class="content">
+										<header>
+											<h1>Hi, I’m Editorial<br />
+											by HTML5 UP</h1>
+											<p>A free and fully responsive site template</p>
+										</header>
+										<p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas. Pellentesque sapien ac quam. Lorem ipsum dolor sit nullam.</p>
+										<ul class="actions">
+											<li><a href="#" class="button big">Learn More</a></li>
+										</ul>
+									</div>
+									<span class="image object">
+										<img src="images/pic10.jpg" alt="" />
+									</span>
+								</section> -->
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Search -->
+
+
+							<!-- Menu -->
+								<nav id="menu">
+									<br><br><br>
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<br>
+									<ul>
+										<li><a href="#"><div onclick="menu_total()">전체 용접 상태</div></a></li>
+										<li><a href="#"><div onclick="menu_weld_1()">용접1</div></a></li>
+										<li><a href="#"><div onclick="menu_weld_2()">용접2</div></a></li>
+										<li><a href="#"><div onclick="menu_weld_3()">용접3</div></a></li>
+										<li><a href="#"><div onclick="menu_weld_4()">용접4</div></a></li>
+										<li><a href="#"><div onclick="menu_video()">작업현장</div></a></li>
+									</ul><br><br><br><br><br><br><br>									
+								</nav>
+						
+
+							<!-- Footer -->
+							
+							<div>
+								<div style="width:40%; float:left;">
+									<center><a href="http://www.ksoe.co.kr"><img src="images/ksoe.png" style="height:24px"></img></a></center>
+								</div>
+								<div style="width:34%; float:left;">
+									<center><a href="http://www.kaist.ac.kr"><img src="images/kaist.png" style="height:24px"></img></a></center>
+								</div>
+								<div style="width:26%; float:left;">
+									<center><a href="http://www.kt.co.kr"><img src="images/kt.png" style="height:24px"></img></a></center>
+								</div>
+							</div>
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+		<!-- My Scripts -->
+			<script type="text/javascript">
+				function chartLoad_1() {
+					var allRows;
+					var VOLTAGE_raw;
+					var VOLTAGE;
+					var CURRNET_raw;
+					var CURRENT;
+					var GAS_raw;
+					var GAS;
+					var WIRESPEED_raw;
+					var WIRESPEED;
+					var OUTLIER_raw;
+					var OUTLIER;
+					var OUTLIER_VOLTAGE;
+					var OUTLIER_CURRENT;
+					var OUTLIER_GAS;
+					var OUTLIER_WIRESPEED;
+					var x_size = 50;
+					var end_cnt = 60;
+					var read_cnt = x_size + end_cnt; 
+					var interval_time = 500;
+					var outlier_rate = 0;
+					var outlier_change = 0;
+	// local에서 실행하는 경우
+					var input = document.createElement("input");
+					input.type = "file";
+					input.accept = "text/plain"; // 확장자가 xxx, yyy 일때, ".xxx, .yyy"
+					input.onchange = function (event) {
+
+						file = event.target.files[0];
+						var reader = new FileReader();
+						reader.onload = function () {
+							// output.innerText = reader.result;
+							allRows = reader.result.split(/\r?\n|\r/);
+							VOLTAGE_raw = allRows.map(line => line.split(',')[0])
+							CURRENT_raw = allRows.map(line => line.split(',')[1])
+							GAS_raw = allRows.map(line => line.split(',')[2])
+							WIRESPEED_raw = allRows.map(line => line.split(',')[3])
+							OUTLIER_raw = allRows.map(line => line.split(',')[4])								
+							setInterval(data_load_1, interval_time);
+						};
+						reader.readAsText(file, /* optional */ "euc-kr");								
+					};
+					input.click();
+	// web server 에서 실행하는 경우
+					// var rawFile = new XMLHttpRequest();
+					// rawFile.open("GET", "./data/chart_test_1.txt", true);
+					// rawFile.onreadystatechange = function ()
+					// {
+					// 	if(rawFile.readyState === 4)
+					// 	{
+					// 		if(rawFile.status === 200 || rawFile.status == 0)
+					// 		{
+					// 			allRows = rawFile.responseText.split(/\r?\n|\r/);
+					// 			VOLTAGE_raw = allRows.map(line => line.split(',')[0])
+					// 			CURRENT_raw = allRows.map(line => line.split(',')[1])
+					// 			GAS_raw = allRows.map(line => line.split(',')[2])
+					// 			WIRESPEED_raw = allRows.map(line => line.split(',')[3])
+					// 			OUTLIER_raw = allRows.map(line => line.split(',')[4])									
+					// 			setInterval(data_load_1, interval_time);
+					// 		}
+					// 	}
+					// }
+					// rawFile.send(null);
+	//////////////////////////////					
+					function data_load_1() {									
+						VOLTAGE = ["VOLTAGE"];
+						CURRENT = ["CURRENT"];
+						GAS = ["GAS"];
+						WIRESPEED = ["WIRESPEED"];
+						OUTLIER = ["OUTLIER"];
+						var outlier_cnt = 0;
+						var outlier_temp;
+
+						OUTLIER_VOLTAGE = ["OUTLIER_VOLTAGE"];
+						OUTLIER_CURRENT = ["OUTLIER_CURRENT"];
+						OUTLIER_GAS = ["OUTLIER_GAS"];
+						OUTLIER_WIRESPEED = ["OUTLIER_WIRESPEED"];
+						
+						if (OUTLIER_raw[read_cnt] == 1)
+							document.getElementById('status_indicator_1').src = "images/red_circle.jpg";
+						else
+							document.getElementById('status_indicator_1').src = "images/green_circle.jpg";
+						// for(var i=1; i<=read_cnt-1; i++) {
+						for(var i=1; i<=read_cnt;i++) {
+							outlier_temp = OUTLIER_raw[i];
+							outlier_temp *= 1;
+							outlier_cnt += outlier_temp;	
+						}
+						if (outlier_rate != outlier_cnt) {
+							outlier_rate = outlier_cnt;
+							OUTLIER.push(outlier_rate);
+							outlier_change = 1;
+						}
+						else
+							outlier_change = 0;
+						if(read_cnt > x_size+1)
+							end_cnt = read_cnt - x_size;
+						for(var i=read_cnt; i>=end_cnt; i--) {
+							VOLTAGE.push(VOLTAGE_raw[i]);
+							CURRENT.push(CURRENT_raw[i]);
+							GAS.push(GAS_raw[i]);
+							WIRESPEED.push(WIRESPEED_raw[i]);
+							OUTLIER_VOLTAGE.push(VOLTAGE_raw[i]*OUTLIER_raw[i]);
+							OUTLIER_CURRENT.push(CURRENT_raw[i]*OUTLIER_raw[i]);
+							OUTLIER_GAS.push(GAS_raw[i]*OUTLIER_raw[i]);
+							OUTLIER_WIRESPEED.push(WIRESPEED_raw[i]*OUTLIER_raw[i]);
+							// OUTLIER_VOLTAGE.push(OUTLIER_raw[i]*45);								
+						}
+
+						var progress = ((read_cnt-x_size)/(VOLTAGE_raw.length-1-x_size))*100;
+						progress.toFixed(2);
+						// alert(VOLTAGE);				
+						$(document).ready(function() {
+							chart_data_load_1(VOLTAGE, CURRENT, GAS, WIRESPEED, outlier_rate, progress, outlier_change, OUTLIER_VOLTAGE, OUTLIER_CURRENT, OUTLIER_GAS, OUTLIER_WIRESPEED)
+							// setTimeout(chart_data_load(VOLTAGE), 500); // 3000ms(3초)가 경과하면 함수 실행
+						});
+						
+						if(read_cnt < VOLTAGE_raw.length-1) {
+							read_cnt++;
+						}
+						else {
+							read_cnt = x_size+1;
+							end_cnt = 1;
+							outlier_cnt = 0;
+						}							
+					}
+				
+					function chart_data_load_1(VOLTAGE, CURRENT, GAS, WIRESPEED, outlier_rate, progress, outlier_change, OUTLIER_VOLTAGE, OUTLIER_CURRENT, OUTLIER_GAS, OUTLIER_WIRESPEED) {
+						// alert('chartLoad')
+					
+						document.getElementById('progress_bar_1').style.width = progress + '%';
+						document.getElementById('welding_pic_1').style.width = (100-progress) + '%';
+						
+						if (outlier_change == 1) {							
+							var gauge_percentage = Math.round(outlier_rate/(VOLTAGE_raw.length-x_size)*100);
+							document.getElementById('gauge_1_value').innerText = gauge_percentage+'%';
+							
+							if (gauge_percentage <= 50) {
+								document.getElementById('gauge_1_class').className = 'progress-circle p' + gauge_percentage;
+							}
+							else if (gauge_percentage <= 100) {
+								document.getElementById('gauge_1_class').className = 'progress-circle over50 p' + gauge_percentage;
+							}
+							else {
+								document.getElementById('gauge_1_class').className = 'progress-circle over50 p100';
+							}
+
+							// gauge_1.load({
+							// 	columns: [
+							// 		OUTLIER
+							// 	]
+							// });
+						}
+						chart_1_1.load({
+							columns: [
+								VOLTAGE,
+								OUTLIER_VOLTAGE
+							]
+						});
+						chart_1_2.load({
+							columns: [
+								CURRENT,
+								OUTLIER_CURRENT
+							]
+						});
+						chart_1_3.load({
+							columns: [
+								GAS,
+								OUTLIER_GAS
+							]
+						});
+						chart_1_4.load({
+							columns: [
+								WIRESPEED,
+								OUTLIER_WIRESPEED
+							]
+						});
+					}					
+				}
+
+				function chartLoad_2() {
+					var allRows;
+					var VOLTAGE_raw;
+					var VOLTAGE;
+					var CURRNET_raw;
+					var CURRENT;
+					var GAS_raw;
+					var GAS;
+					var WIRESPEED_raw;
+					var WIRESPEED;
+					var OUTLIER_raw;
+					var OUTLIER;
+					var OUTLIER_VOLTAGE;
+					var OUTLIER_CURRENT;
+					var OUTLIER_GAS;
+					var OUTLIER_WIRESPEED;
+					var x_size = 50;
+					var end_cnt = 30;
+					var read_cnt = x_size + end_cnt;
+					var interval_time = 500;
+					var outlier_rate = 0;
+					var outlier_change = 0;
+	// local에서 실행하는 경우
+					var input = document.createElement("input");
+					input.type = "file";
+					input.accept = "text/plain"; // 확장자가 xxx, yyy 일때, ".xxx, .yyy"
+					input.onchange = function (event) {
+
+						file = event.target.files[0];
+						var reader = new FileReader();
+						reader.onload = function () {
+							// output.innerText = reader.result;
+							allRows = reader.result.split(/\r?\n|\r/);
+							VOLTAGE_raw = allRows.map(line => line.split(',')[0]);
+							CURRENT_raw = allRows.map(line => line.split(',')[1]);
+							GAS_raw = allRows.map(line => line.split(',')[2]);
+							WIRESPEED_raw = allRows.map(line => line.split(',')[3]);
+							OUTLIER_raw = allRows.map(line => line.split(',')[4]);
+							// data_load();
+							setInterval(data_load_2, interval_time);
+						};
+						reader.readAsText(file, /* optional */ "euc-kr");								
+					};
+					input.click();
+	// web server 에서 실행하는 경우
+					// var rawFile = new XMLHttpRequest();
+					// rawFile.open("GET", "./data/chart_test_2.txt", true);
+					// rawFile.onreadystatechange = function ()
+					// {
+					// 	if(rawFile.readyState === 4)
+					// 	{
+					// 		if(rawFile.status === 200 || rawFile.status == 0)
+					// 		{
+					// 			allRows = rawFile.responseText.split(/\r?\n|\r/);
+					// 			VOLTAGE_raw = allRows.map(line => line.split(',')[0])
+					// 			CURRENT_raw = allRows.map(line => line.split(',')[1])
+					// 			GAS_raw = allRows.map(line => line.split(',')[2])
+					// 			WIRESPEED_raw = allRows.map(line => line.split(',')[3])
+					// 			OUTLIER_raw = allRows.map(line => line.split(',')[4])									
+					// 			setInterval(data_load_2, interval_time);
+					// 		}
+					// 	}
+					// }
+					// rawFile.send(null);
+	//////////////////////////////					
+					function data_load_2() {									
+						VOLTAGE = ["VOLTAGE"];
+						CURRENT = ["CURRENT"];
+						GAS = ["GAS"];
+						WIRESPEED = ["WIRESPEED"];
+						OUTLIER = ["OUTLIER"];
+						var outlier_cnt = 0;
+						var outlier_temp;
+
+						OUTLIER_VOLTAGE = ["OUTLIER_VOLTAGE"];
+						OUTLIER_CURRENT = ["OUTLIER_CURRENT"];
+						OUTLIER_GAS = ["OUTLIER_GAS"];
+						OUTLIER_WIRESPEED = ["OUTLIER_WIRESPEED"];
+						
+						if (OUTLIER_raw[read_cnt] == 1)
+							document.getElementById('status_indicator_2').src = "images/red_circle.jpg";
+						else
+							document.getElementById('status_indicator_2').src = "images/green_circle.jpg";
+						// for(var i=1; i<=read_cnt-1; i++) {
+						for(var i=1; i<=read_cnt;i++) {
+							outlier_temp = OUTLIER_raw[i];
+							outlier_temp *= 1;
+							outlier_cnt += outlier_temp;	
+						}
+						if (outlier_rate != outlier_cnt) {
+							outlier_rate = outlier_cnt;														
+							OUTLIER.push(outlier_rate);
+							outlier_change = 1;
+						}
+						else
+							outlier_change = 0;
+						if(read_cnt > x_size+1)
+							end_cnt = read_cnt - x_size;
+						for(var i=read_cnt; i>=end_cnt; i--) {
+							VOLTAGE.push(VOLTAGE_raw[i]);
+							CURRENT.push(CURRENT_raw[i]);
+							GAS.push(GAS_raw[i]);
+							WIRESPEED.push(WIRESPEED_raw[i]);
+							OUTLIER_VOLTAGE.push(VOLTAGE_raw[i]*OUTLIER_raw[i]);
+							OUTLIER_CURRENT.push(CURRENT_raw[i]*OUTLIER_raw[i]);
+							OUTLIER_GAS.push(GAS_raw[i]*OUTLIER_raw[i]);
+							OUTLIER_WIRESPEED.push(WIRESPEED_raw[i]*OUTLIER_raw[i]);
+							// OUTLIER_VOLTAGE.push(OUTLIER_raw[i]*45);								
+						}
+
+						var progress = ((read_cnt-x_size)/(VOLTAGE_raw.length-1-x_size))*100
+						progress.toFixed(2);
+						// alert(VOLTAGE);				
+						$(document).ready(function() {
+							chart_data_load_2(VOLTAGE, CURRENT, GAS, WIRESPEED, outlier_rate, progress, outlier_change, OUTLIER_VOLTAGE, OUTLIER_CURRENT, OUTLIER_GAS, OUTLIER_WIRESPEED)
+							// setTimeout(chart_data_load(VOLTAGE), 500); // 3000ms(3초)가 경과하면 함수 실행
+						});
+						
+						if(read_cnt < VOLTAGE_raw.length-1) {
+							read_cnt++;
+						}
+						else {
+							read_cnt = x_size+1;
+							end_cnt = 1;
+							outlier_cnt = 0;
+						}
+					}
+
+					function chart_data_load_2(VOLTAGE, CURRENT, GAS, WIRESPEED, outlier_rate, progress, outlier_change, OUTLIER_VOLTAGE, OUTLIER_CURRENT, OUTLIER_GAS, OUTLIER_WIRESPEED) {
+						// alert('chartLoad')
+					
+						document.getElementById('progress_bar_2').style.width = progress + '%';
+						document.getElementById('welding_pic_2').style.width = (100-progress) + '%';
+
+						if (outlier_change == 1) {							
+							var gauge_percentage = Math.round(outlier_rate/(VOLTAGE_raw.length-x_size)*100);
+							document.getElementById('gauge_2_value').innerText = gauge_percentage+'%';
+							
+							if (gauge_percentage <= 50) {
+								document.getElementById('gauge_2_class').className = 'progress-circle p' + gauge_percentage;
+							}
+							else if (gauge_percentage <= 100) {
+								document.getElementById('gauge_2_class').className = 'progress-circle over50 p' + gauge_percentage;
+							}
+							else {
+								document.getElementById('gauge_2_class').className = 'progress-circle over50 p100';
+							}
+						}
+						
+						if (outlier_change == 1) {
+							gauge_2.load({
+								columns: [
+									OUTLIER
+								]
+							});
+						}
+						chart_2_1.load({
+							columns: [
+								VOLTAGE,
+								OUTLIER_VOLTAGE
+							]
+						});
+						chart_2_2.load({
+							columns: [
+								CURRENT,
+								OUTLIER_CURRENT
+							]
+						});
+						chart_2_3.load({
+							columns: [
+								GAS,
+								OUTLIER_GAS
+							]
+						});
+						chart_2_4.load({
+							columns: [
+								WIRESPEED,
+								OUTLIER_WIRESPEED
+							]
+						});
+					}													
+				}
+					
+				function chartLoad_3() {
+					var allRows;
+					var VOLTAGE_raw;
+					var VOLTAGE;
+					var CURRNET_raw;
+					var CURRENT;
+					var GAS_raw;
+					var GAS;
+					var WIRESPEED_raw;
+					var WIRESPEED;
+					var OUTLIER_raw;
+					var OUTLIER;
+					var OUTLIER_VOLTAGE;
+					var OUTLIER_CURRENT;
+					var OUTLIER_GAS;
+					var OUTLIER_WIRESPEED;
+					var x_size = 50;
+					var end_cnt = 120;
+					var read_cnt = x_size + end_cnt;
+					var interval_time = 500;
+					var outlier_rate = 0;
+					var outlier_change = 0;
+	// local에서 실행하는 경우
+					var input = document.createElement("input");
+					input.type = "file";
+					input.accept = "text/plain"; // 확장자가 xxx, yyy 일때, ".xxx, .yyy"
+					input.onchange = function (event) {
+
+						file = event.target.files[0];
+						var reader = new FileReader();
+						reader.onload = function () {
+							// output.innerText = reader.result;
+							allRows = reader.result.split(/\r?\n|\r/);
+							VOLTAGE_raw = allRows.map(line => line.split(',')[0]);
+							CURRENT_raw = allRows.map(line => line.split(',')[1]);
+							GAS_raw = allRows.map(line => line.split(',')[2]);
+							WIRESPEED_raw = allRows.map(line => line.split(',')[3]);
+							OUTLIER_raw = allRows.map(line => line.split(',')[4]);	
+							// data_load();
+							setInterval(data_load_3, interval_time);
+						};
+						reader.readAsText(file, /* optional */ "euc-kr");								
+					};
+					input.click();
+	// web server 에서 실행하는 경우
+					// var rawFile = new XMLHttpRequest();
+					// rawFile.open("GET", "./data/chart_test_3.txt", true);
+					// rawFile.onreadystatechange = function ()
+					// {
+					// 	if(rawFile.readyState === 4)
+					// 	{
+					// 		if(rawFile.status === 200 || rawFile.status == 0)
+					// 		{
+					// 			allRows = rawFile.responseText.split(/\r?\n|\r/);
+					// 			VOLTAGE_raw = allRows.map(line => line.split(',')[0])
+					// 			CURRENT_raw = allRows.map(line => line.split(',')[1])
+					// 			GAS_raw = allRows.map(line => line.split(',')[2])
+					// 			WIRESPEED_raw = allRows.map(line => line.split(',')[3])
+					// 			OUTLIER_raw = allRows.map(line => line.split(',')[4])									
+					// 			setInterval(data_load_3, interval_time);
+					// 		}
+					// 	}
+					// }
+					// rawFile.send(null);
+	//////////////////////////////					
+					function data_load_3() {									
+						VOLTAGE = ["VOLTAGE"];
+						CURRENT = ["CURRENT"];
+						GAS = ["GAS"];
+						WIRESPEED = ["WIRESPEED"];
+						OUTLIER = ["OUTLIER"];
+						var outlier_cnt = 0;
+						var outlier_temp;
+
+						OUTLIER_VOLTAGE = ["OUTLIER_VOLTAGE"];
+						OUTLIER_CURRENT = ["OUTLIER_CURRENT"];
+						OUTLIER_GAS = ["OUTLIER_GAS"];
+						OUTLIER_WIRESPEED = ["OUTLIER_WIRESPEED"];
+						
+						if (OUTLIER_raw[read_cnt] == 1)
+							document.getElementById('status_indicator_3').src = "images/red_circle.jpg";
+						else
+							document.getElementById('status_indicator_3').src = "images/green_circle.jpg";
+						// for(var i=1; i<=read_cnt-1; i++) {
+						for(var i=1; i<=read_cnt;i++) {
+							outlier_temp = OUTLIER_raw[i];
+							outlier_temp *= 1;
+							outlier_cnt += outlier_temp;	
+						}
+						if (outlier_rate != outlier_cnt) {
+							outlier_rate = outlier_cnt;														
+							OUTLIER.push(outlier_rate);
+							outlier_change = 1;
+						}
+						else
+							outlier_change = 0;
+						if(read_cnt > x_size+1)
+							end_cnt = read_cnt - x_size;
+						for(var i=read_cnt; i>=end_cnt; i--) {
+							VOLTAGE.push(VOLTAGE_raw[i]);
+							CURRENT.push(CURRENT_raw[i]);
+							GAS.push(GAS_raw[i]);
+							WIRESPEED.push(WIRESPEED_raw[i]);
+							OUTLIER_VOLTAGE.push(VOLTAGE_raw[i]*OUTLIER_raw[i]);
+							OUTLIER_CURRENT.push(CURRENT_raw[i]*OUTLIER_raw[i]);
+							OUTLIER_GAS.push(GAS_raw[i]*OUTLIER_raw[i]);
+							OUTLIER_WIRESPEED.push(WIRESPEED_raw[i]*OUTLIER_raw[i]);
+							// OUTLIER_VOLTAGE.push(OUTLIER_raw[i]*45);								
+						}
+
+						var progress = ((read_cnt-x_size)/(VOLTAGE_raw.length-1-x_size))*100;
+						progress.toFixed(2);
+						// alert(VOLTAGE);				
+						$(document).ready(function() {
+							chart_data_load_3(VOLTAGE, CURRENT, GAS, WIRESPEED, outlier_rate, progress, outlier_change, OUTLIER_VOLTAGE, OUTLIER_CURRENT, OUTLIER_GAS, OUTLIER_WIRESPEED)
+							// setTimeout(chart_data_load(VOLTAGE), 500); // 3000ms(3초)가 경과하면 함수 실행
+						});
+						
+						if(read_cnt < VOLTAGE_raw.length-1) {
+							read_cnt++;
+						}
+						else {
+							read_cnt = x_size+1;
+							end_cnt = 1;
+							outlier_cnt = 0;
+						}
+					}
+
+					function chart_data_load_3(VOLTAGE, CURRENT, GAS, WIRESPEED, outlier_rate, progress, outlier_change, OUTLIER_VOLTAGE, OUTLIER_CURRENT, OUTLIER_GAS, OUTLIER_WIRESPEED) {
+						// alert('chartLoad')
+					
+						document.getElementById('progress_bar_3').style.width = progress + '%';
+						document.getElementById('welding_pic_3').style.width = (100-progress) + '%';
+
+						if (outlier_change == 1) {							
+							var gauge_percentage = Math.round(outlier_rate/(VOLTAGE_raw.length-x_size)*100);
+							document.getElementById('gauge_3_value').innerText = gauge_percentage+'%';
+														
+							if (gauge_percentage <= 50) {
+								document.getElementById('gauge_3_class').className = 'progress-circle p' + gauge_percentage;
+							}
+							else if (gauge_percentage <= 100) {
+								document.getElementById('gauge_3_class').className = 'progress-circle over50 p' + gauge_percentage;
+							}
+							else {
+								document.getElementById('gauge_3_class').className = 'progress-circle over50 p100';
+							}
+						}
+						chart_3_1.load({
+							columns: [
+								VOLTAGE,
+								OUTLIER_VOLTAGE
+							]
+						});
+						chart_3_2.load({
+							columns: [
+								CURRENT,
+								OUTLIER_CURRENT
+							]
+						});
+						chart_3_3.load({
+							columns: [
+								GAS,
+								OUTLIER_GAS
+							]
+						});
+						chart_3_4.load({
+							columns: [
+								WIRESPEED,
+								OUTLIER_WIRESPEED
+							]
+						});
+					}					
+				}
+
+				function chartLoad_4() {
+					var allRows;
+					var VOLTAGE_raw;
+					var VOLTAGE;
+					var CURRNET_raw;
+					var CURRENT;
+					var GAS_raw;
+					var GAS;
+					var WIRESPEED_raw;
+					var WIRESPEED;
+					var OUTLIER_raw;
+					var OUTLIER;
+					var OUTLIER_VOLTAGE;
+					var OUTLIER_CURRENT;
+					var OUTLIER_GAS;
+					var OUTLIER_WIRESPEED;
+					var x_size = 50;
+					var end_cnt = 100;
+					var read_cnt = x_size + end_cnt;
+					var interval_time = 500;
+					var outlier_rate = 0;
+					var outlier_change = 0;
+	// local에서 실행하는 경우
+					var input = document.createElement("input");
+					input.type = "file";
+					input.accept = "text/plain"; // 확장자가 xxx, yyy 일때, ".xxx, .yyy"
+					input.onchange = function (event) {
+
+						file = event.target.files[0];
+						var reader = new FileReader();
+						reader.onload = function () {
+							// output.innerText = reader.result;
+							allRows = reader.result.split(/\r?\n|\r/);
+							VOLTAGE_raw = allRows.map(line => line.split(',')[0]);
+							CURRENT_raw = allRows.map(line => line.split(',')[1]);
+							GAS_raw = allRows.map(line => line.split(',')[2]);
+							WIRESPEED_raw = allRows.map(line => line.split(',')[3]);
+							OUTLIER_raw = allRows.map(line => line.split(',')[4]);	
+							// data_load();
+							setInterval(data_load_4, interval_time);
+						};
+						reader.readAsText(file, /* optional */ "euc-kr");								
+					};
+					input.click();
+	// web server 에서 실행하는 경우
+					// var rawFile = new XMLHttpRequest();
+					// rawFile.open("GET", "./data/chart_test_4.txt", true);
+					// rawFile.onreadystatechange = function ()
+					// {
+					// 	if(rawFile.readyState === 4)
+					// 	{
+					// 		if(rawFile.status === 200 || rawFile.status == 0)
+					// 		{
+					// 			allRows = rawFile.responseText.split(/\r?\n|\r/);
+					// 			VOLTAGE_raw = allRows.map(line => line.split(',')[0])
+					// 			CURRENT_raw = allRows.map(line => line.split(',')[1])
+					// 			GAS_raw = allRows.map(line => line.split(',')[2])
+					// 			WIRESPEED_raw = allRows.map(line => line.split(',')[3])
+					// 			OUTLIER_raw = allRows.map(line => line.split(',')[4])									
+					// 			setInterval(data_load_4, interval_time);
+					// 		}
+					// 	}
+					// }
+					// rawFile.send(null);
+	//////////////////////////////					
+					function data_load_4() {									
+						VOLTAGE = ["VOLTAGE"];
+						CURRENT = ["CURRENT"];
+						GAS = ["GAS"];
+						WIRESPEED = ["WIRESPEED"];
+						OUTLIER = ["OUTLIER"];
+						var outlier_cnt = 0;
+						var outlier_temp;
+
+						OUTLIER_VOLTAGE = ["OUTLIER_VOLTAGE"];
+						OUTLIER_CURRENT = ["OUTLIER_CURRENT"];
+						OUTLIER_GAS = ["OUTLIER_GAS"];
+						OUTLIER_WIRESPEED = ["OUTLIER_WIRESPEED"];
+						
+						if (OUTLIER_raw[read_cnt] == 1)
+							document.getElementById('status_indicator_4').src = "images/red_circle.jpg";
+						else
+							document.getElementById('status_indicator_4').src = "images/green_circle.jpg";
+						// for(var i=1; i<=read_cnt-1; i++) {
+						for(var i=1; i<=read_cnt;i++) {
+							outlier_temp = OUTLIER_raw[i];
+							outlier_temp *= 1;
+							outlier_cnt += outlier_temp;	
+						}
+						if (outlier_rate != outlier_cnt) {
+							outlier_rate = outlier_cnt														
+							OUTLIER.push(outlier_rate);
+							outlier_change = 1;
+						}
+						else
+							outlier_change = 0;
+						if(read_cnt > x_size+1)
+							end_cnt = read_cnt - x_size;
+						for(var i=read_cnt; i>=end_cnt; i--) {
+							VOLTAGE.push(VOLTAGE_raw[i]);
+							CURRENT.push(CURRENT_raw[i]);
+							GAS.push(GAS_raw[i]);
+							WIRESPEED.push(WIRESPEED_raw[i]);
+							OUTLIER_VOLTAGE.push(VOLTAGE_raw[i]*OUTLIER_raw[i]);
+							OUTLIER_CURRENT.push(CURRENT_raw[i]*OUTLIER_raw[i]);
+							OUTLIER_GAS.push(GAS_raw[i]*OUTLIER_raw[i]);
+							OUTLIER_WIRESPEED.push(WIRESPEED_raw[i]*OUTLIER_raw[i]);
+							// OUTLIER_VOLTAGE.push(OUTLIER_raw[i]*45);								
+						}
+
+						var progress = ((read_cnt-x_size)/(VOLTAGE_raw.length-1-x_size))*100;
+						progress.toFixed(2);
+						// alert(VOLTAGE);				
+						$(document).ready(function() {
+							chart_data_load_4(VOLTAGE, CURRENT, GAS, WIRESPEED, outlier_rate, progress, outlier_change, OUTLIER_VOLTAGE, OUTLIER_CURRENT, OUTLIER_GAS, OUTLIER_WIRESPEED)
+							// setTimeout(chart_data_load(VOLTAGE), 500); // 3000ms(3초)가 경과하면 함수 실행
+						});
+						
+						if(read_cnt < VOLTAGE_raw.length-1) {
+							read_cnt++;
+						}
+						else {
+							read_cnt = x_size+1;
+							end_cnt = 1;
+							outlier_cnt = 0;
+						}
+					}
+
+					function chart_data_load_4(VOLTAGE, CURRENT, GAS, WIRESPEED, outlier_rate, progress, outlier_change, OUTLIER_VOLTAGE, OUTLIER_CURRENT, OUTLIER_GAS, OUTLIER_WIRESPEED) {
+						// alert('chartLoad')
+					
+						document.getElementById('progress_bar_4').style.width = progress + '%';
+						document.getElementById('welding_pic_4').style.width = (100-progress) + '%';
+
+						if (outlier_change == 1) {							
+							var gauge_percentage = Math.round(outlier_rate/(VOLTAGE_raw.length-x_size)*100);
+							document.getElementById('gauge_4_value').innerText = gauge_percentage+'%';
+														
+							if (gauge_percentage <= 50) {
+								document.getElementById('gauge_4_class').className = 'progress-circle p' + gauge_percentage;
+							}
+							else if (gauge_percentage <= 100) {
+								document.getElementById('gauge_4_class').className = 'progress-circle over50 p' + gauge_percentage;
+							}
+							else {
+								document.getElementById('gauge_4_class').className = 'progress-circle over50 p100';
+							}
+						}
+						chart_4_1.load({
+							columns: [
+								VOLTAGE,
+								OUTLIER_VOLTAGE
+							]
+						});
+						chart_4_2.load({
+							columns: [
+								CURRENT,
+								OUTLIER_CURRENT
+							]
+						});
+						chart_4_3.load({
+							columns: [
+								GAS,
+								OUTLIER_GAS
+							]
+						});
+						chart_4_4.load({
+							columns: [
+								WIRESPEED,
+								OUTLIER_WIRESPEED
+							]
+						});
+					}					
+				}				
+	// web server 에서 실행하는 경우
+				chartLoad_1()
+				chartLoad_2()
+				chartLoad_3()
+				chartLoad_4()
+			</script>
+	<!-- weld-1 -->
+			<script type="text/javascript">
+				var chart_1_1 = c3.generate({ 
+					bindto: '#chart_1_1',
+					data: {
+						columns: [
+							['VOLTAGE'], 
+							['OUTLIER_VOLTAGE']
+						],
+						// axes: {
+						// 	data2: 'y2' // ADD
+						// }
+						colors: { 
+							'VOLTAGE': 'blue',
+							'OUTLIER_VOLTAGE': 'red',	   
+						},
+						types: {
+							VOLTAGE: 'line',
+							OUTLIER_VOLTAGE: 'bar',							
+						},
+						// point: {
+						// 	// 'data1': {
+						// 	// 	shape: 'circle',
+						// 	// 	color: '#ff0000',
+						// 	// 	r: 2
+						// 	// },
+						// 	'OUTLIER_VOLTAGE': {
+						// 		shape: 'square',
+						// 		color: '#0000ff',
+						// 		r: 3
+						// 	}
+						// },
+					},
+					axis: {
+						x: {
+							min: 0,
+							max: 50
+						},
+						y: {
+							min: 20,
+							max: 40,
+							tick: 5
+						}
+						// y2: {
+						// 	show: true // ADD
+						// }
+					},
+					legend: {
+						show: false
+					}
+				});
+				var chart_1_2 = c3.generate({ 
+					bindto: '#chart_1_2',
+					data: {
+						columns: [
+							['CURRENT'],
+							['OUTLIER_CURRENT']
+						],
+						colors: { 
+							'CURRENT': 'green',
+							'OUTLIER_CURRENT': 'red',	 
+						},
+						types: {
+							CURRENT: 'line',
+							OUTLIER_CURRENT: 'bar',	
+						},
+						// axes: {
+						// 	data2: 'y2' // ADD
+						// }
+					},
+					axis: {
+						x: {
+							min: 0,
+							max: 50
+						},
+						y: {
+							min: 50,
+							max: 550,
+							tick: 5
+						}
+						// y2: {
+						// 	show: true // ADD
+						// }
+					},
+					legend: {
+						show: false
+					}
+				});
+				var chart_1_3 = c3.generate({ 
+					bindto: '#chart_1_3',
+					data: {
+						columns: [
+							['GAS'],
+							['OUTLIER_GAS']
+						],
+						colors: { 
+							'GAS': '#000080',
+							'OUTLIER_GAS': 'red',	 
+						},
+						types: {
+							GAS: 'line',
+							OUTLIER_GAS: 'bar',	
+						},
+						// axes: {
+						// 	data2: 'y2' // ADD
+						// }
+					},
+					axis: {
+						x: {
+							min: 0,
+							max: 50
+						},
+						y: {
+							min: 25,
+							max: 35,
+							tick: 5
+						}
+						// y2: {
+						// 	show: true // ADD
+						// }
+					},
+					legend: {
+						show: false
+					}
+				});
+				var chart_1_4 = c3.generate({ 
+					bindto: '#chart_1_4',
+					data: {
+						columns: [
+							['WIRESPEED'],
+							['OUTLIER_WIRESPEED']
+						],
+						colors: 
+						{ 
+							'WIRESPEED': '#006400',
+							'OUTLIER_WIRESPEED': 'red',	 
+						},
+						types: {
+							WIRESPEED: 'line',
+							OUTLIER_WIRESPEED: 'bar',	
+						},
+						// axes: {
+						// 	data2: 'y2' // ADD
+						// }
+					},
+					axis: {
+						x: {
+							min: 0,
+							max: 50
+						},
+						y: {
+							min: 1.25,
+							max: 14.7,
+							tick: 5
+						}
+						// y2: {
+						// 	show: true // ADD
+						// }
+					},
+					legend: {
+						show: false
+					}
+				});
+			</script>
+	<!-- weld-2 -->
+			<script type="text/javascript">
+				var chart_2_1 = c3.generate({ 
+					bindto: '#chart_2_1',
+					data: {
+						columns: [
+							['VOLTAGE'], 
+							['OUTLIER_VOLTAGE']
+						],
+						// axes: {
+						// 	data2: 'y2' // ADD
+						// }
+						colors: { 
+							'VOLTAGE': 'blue',
+							'OUTLIER_VOLTAGE': 'red',	   
+						},
+						types: {
+							VOLTAGE: 'line',
+							OUTLIER_VOLTAGE: 'bar',							
+						},
+						// point: {
+						// 	// 'data1': {
+						// 	// 	shape: 'circle',
+						// 	// 	color: '#ff0000',
+						// 	// 	r: 2
+						// 	// },
+						// 	'OUTLIER_VOLTAGE': {
+						// 		shape: 'square',
+						// 		color: '#0000ff',
+						// 		r: 3
+						// 	}
+						// },
+					},
+					axis: {
+						x: {
+							min: 0,
+							max: 50
+						},
+						y: {
+							min: 20,
+							max: 40,
+							tick: 5
+						}
+						// y2: {
+						// 	show: true // ADD
+						// }
+					},
+					legend: {
+						show: false
+					}
+				});
+				var chart_2_2 = c3.generate({ 
+					bindto: '#chart_2_2',
+					data: {
+						columns: [
+							['CURRENT'],
+							['OUTLIER_CURRENT']
+						],
+						colors: { 
+							'CURRENT': 'green',
+							'OUTLIER_CURRENT': 'red',	 
+						},
+						types: {
+							CURRENT: 'line',
+							OUTLIER_CURRENT: 'bar',	
+						},
+						// axes: {
+						// 	data2: 'y2' // ADD
+						// }
+					},
+					axis: {
+						x: {
+							min: 0,
+							max: 50
+						},
+						y: {
+							min: 50,
+							max: 550,
+							tick: 5
+						}
+						// y2: {
+						// 	show: true // ADD
+						// }
+					},
+					legend: {
+						show: false
+					}
+				});
+				var chart_2_3 = c3.generate({ 
+					bindto: '#chart_2_3',
+					data: {
+						columns: [
+							['GAS'],
+							['OUTLIER_GAS']
+						],
+						colors: { 
+							'GAS': '#000080',
+							'OUTLIER_GAS': 'red',	 
+						},
+						types: {
+							GAS: 'line',
+							OUTLIER_GAS: 'bar',	
+						},
+						// axes: {
+						// 	data2: 'y2' // ADD
+						// }
+					},
+					axis: {
+						x: {
+							min: 0,
+							max: 50
+						},
+						y: {
+							min: 25,
+							max: 35,
+							tick: 5
+						}
+						// y2: {
+						// 	show: true // ADD
+						// }
+					},
+					legend: {
+						show: false
+					}
+				});
+				var chart_2_4 = c3.generate({ 
+					bindto: '#chart_2_4',
+					data: {
+						columns: [
+							['WIRESPEED'],
+							['OUTLIER_WIRESPEED']
+						],
+						colors: 
+						{ 
+							'WIRESPEED': '#006400',
+							'OUTLIER_WIRESPEED': 'red',	 
+						},
+						types: {
+							WIRESPEED: 'line',
+							OUTLIER_WIRESPEED: 'bar',	
+						},
+						// axes: {
+						// 	data2: 'y2' // ADD
+						// }
+					},
+					axis: {
+						x: {
+							min: 0,
+							max: 50
+						},
+						y: {
+							min: 1.25,
+							max: 14.7,
+							tick: 5
+						}
+						// y2: {
+						// 	show: true // ADD
+						// }
+					},
+					legend: {
+						show: false
+					}
+				});
+			</script>
+	<!-- weld-3 -->
+			<script type="text/javascript">
+				var chart_3_1 = c3.generate({ 
+					bindto: '#chart_3_1',
+					data: {
+						columns: [
+							['VOLTAGE'], 
+							['OUTLIER_VOLTAGE']
+						],
+						// axes: {
+						// 	data2: 'y2' // ADD
+						// }
+						colors: { 
+							'VOLTAGE': 'blue',
+							'OUTLIER_VOLTAGE': 'red',	   
+						},
+						types: {
+							VOLTAGE: 'line',
+							OUTLIER_VOLTAGE: 'bar',							
+						},
+						// point: {
+						// 	// 'data1': {
+						// 	// 	shape: 'circle',
+						// 	// 	color: '#ff0000',
+						// 	// 	r: 2
+						// 	// },
+						// 	'OUTLIER_VOLTAGE': {
+						// 		shape: 'square',
+						// 		color: '#0000ff',
+						// 		r: 3
+						// 	}
+						// },
+					},
+					axis: {
+						x: {
+							min: 0,
+							max: 50
+						},
+						y: {
+							min: 20,
+							max: 40,
+							tick: 5
+						}
+						// y2: {
+						// 	show: true // ADD
+						// }
+					},
+					legend: {
+						show: false
+					}
+				});
+				var chart_3_2 = c3.generate({ 
+					bindto: '#chart_3_2',
+					data: {
+						columns: [
+							['CURRENT'],
+							['OUTLIER_CURRENT']
+						],
+						colors: { 
+							'CURRENT': 'green',
+							'OUTLIER_CURRENT': 'red',	 
+						},
+						types: {
+							CURRENT: 'line',
+							OUTLIER_CURRENT: 'bar',	
+						},
+						// axes: {
+						// 	data2: 'y2' // ADD
+						// }
+					},
+					axis: {
+						x: {
+							min: 0,
+							max: 50
+						},
+						y: {
+							min: 50,
+							max: 550,
+							tick: 5
+						}
+						// y2: {
+						// 	show: true // ADD
+						// }
+					},
+					legend: {
+						show: false
+					}
+				});
+				var chart_3_3 = c3.generate({ 
+					bindto: '#chart_3_3',
+					data: {
+						columns: [
+							['GAS'],
+							['OUTLIER_GAS']
+						],
+						colors: { 
+							'GAS': '#000080',
+							'OUTLIER_GAS': 'red',	 
+						},
+						types: {
+							GAS: 'line',
+							OUTLIER_GAS: 'bar',	
+						},
+						// axes: {
+						// 	data2: 'y2' // ADD
+						// }
+					},
+					axis: {
+						x: {
+							min: 0,
+							max: 50
+						},
+						y: {
+							min: 25,
+							max: 35,
+							tick: 5
+						}
+						// y2: {
+						// 	show: true // ADD
+						// }
+					},
+					legend: {
+						show: false
+					}
+				});
+				var chart_3_4 = c3.generate({ 
+					bindto: '#chart_3_4',
+					data: {
+						columns: [
+							['WIRESPEED'],
+							['OUTLIER_WIRESPEED']
+						],
+						colors: 
+						{ 
+							'WIRESPEED': '#006400',
+							'OUTLIER_WIRESPEED': 'red',	 
+						},
+						types: {
+							WIRESPEED: 'line',
+							OUTLIER_WIRESPEED: 'bar',	
+						},
+						// axes: {
+						// 	data2: 'y2' // ADD
+						// }
+					},
+					axis: {
+						x: {
+							min: 0,
+							max: 50
+						},
+						y: {
+							min: 1.25,
+							max: 14.7,
+							tick: 5
+						}
+						// y2: {
+						// 	show: true // ADD
+						// }
+					},
+					legend: {
+						show: false
+					}
+				});
+			</script>
+
+			<script type="text/javascript">
+				var chart_4_1 = c3.generate({ 
+					bindto: '#chart_4_1',
+					data: {
+						columns: [
+							['VOLTAGE'], 
+							['OUTLIER_VOLTAGE']
+						],
+						// axes: {
+						// 	data2: 'y2' // ADD
+						// }
+						colors: { 
+							'VOLTAGE': 'blue',
+							'OUTLIER_VOLTAGE': 'red',	   
+						},
+						types: {
+							VOLTAGE: 'line',
+							OUTLIER_VOLTAGE: 'bar',							
+						},
+						// point: {
+						// 	// 'data1': {
+						// 	// 	shape: 'circle',
+						// 	// 	color: '#ff0000',
+						// 	// 	r: 2
+						// 	// },
+						// 	'OUTLIER_VOLTAGE': {
+						// 		shape: 'square',
+						// 		color: '#0000ff',
+						// 		r: 3
+						// 	}
+						// },
+					},
+					axis: {
+						x: {
+							min: 0,
+							max: 50
+						},
+						y: {
+							min: 20,
+							max: 40,
+							tick: 5
+						}
+						// y2: {
+						// 	show: true // ADD
+						// }
+					},
+					legend: {
+						show: false
+					}
+				});
+				var chart_4_2 = c3.generate({ 
+					bindto: '#chart_4_2',
+					data: {
+						columns: [
+							['CURRENT'],
+							['OUTLIER_CURRENT']
+						],
+						colors: { 
+							'CURRENT': 'green',
+							'OUTLIER_CURRENT': 'red',	 
+						},
+						types: {
+							CURRENT: 'line',
+							OUTLIER_CURRENT: 'bar',	
+						},
+						// axes: {
+						// 	data2: 'y2' // ADD
+						// }
+					},
+					axis: {
+						x: {
+							min: 0,
+							max: 50
+						},
+						y: {
+							min: 50,
+							max: 550,
+							tick: 5
+						}
+						// y2: {
+						// 	show: true // ADD
+						// }
+					},
+					legend: {
+						show: false
+					}
+				});
+				var chart_4_3 = c3.generate({ 
+					bindto: '#chart_4_3',
+					data: {
+						columns: [
+							['GAS'],
+							['OUTLIER_GAS']
+						],
+						colors: { 
+							'GAS': '#000080',
+							'OUTLIER_GAS': 'red',	 
+						},
+						types: {
+							GAS: 'line',
+							OUTLIER_GAS: 'bar',	
+						},
+						// axes: {
+						// 	data2: 'y2' // ADD
+						// }
+					},
+					axis: {
+						x: {
+							min: 0,
+							max: 50
+						},
+						y: {
+							min: 25,
+							max: 35,
+							tick: 5
+						}
+						// y2: {
+						// 	show: true // ADD
+						// }
+					},
+					legend: {
+						show: false
+					}
+				});
+				var chart_4_4 = c3.generate({ 
+					bindto: '#chart_4_4',
+					data: {
+						columns: [
+							['WIRESPEED'],
+							['OUTLIER_WIRESPEED']
+						],
+						colors: 
+						{ 
+							'WIRESPEED': '#006400',
+							'OUTLIER_WIRESPEED': 'red',	 
+						},
+						types: {
+							WIRESPEED: 'line',
+							OUTLIER_WIRESPEED: 'bar',	
+						},
+						// axes: {
+						// 	data2: 'y2' // ADD
+						// }
+					},
+					axis: {
+						x: {
+							min: 0,
+							max: 50
+						},
+						y: {
+							min: 1.25,
+							max: 14.7,
+							tick: 5
+						}
+						// y2: {
+						// 	show: true // ADD
+						// }
+					},
+					legend: {
+						show: false
+					}
+				});
+			</script>
+<!-- 작업현장 -->
+			<script>
+				function menu_total() {
+					document.getElementById('main_txt').innerText = '전체 용접 상태';
+					document.getElementById('menu_total').style.display = 'block';
+					document.getElementById('menu_weld_1').style.display = 'none';
+					document.getElementById('menu_weld_2').style.display = 'none';
+					document.getElementById('menu_weld_3').style.display = 'none';
+					document.getElementById('menu_weld_4').style.display = 'none';
+					document.getElementById('menu_video').style.display = 'none';
+				}
+				function menu_weld_1() {
+					document.getElementById('main_txt').innerText = '용접1';
+					document.getElementById('menu_total').style.display = 'none';
+					document.getElementById('menu_weld_1').style.display = 'block';
+					document.getElementById('menu_weld_2').style.display = 'none';
+					document.getElementById('menu_weld_3').style.display = 'none';
+					document.getElementById('menu_weld_4').style.display = 'none';
+					document.getElementById('menu_video').style.display = 'none';
+				}
+				function menu_weld_2() {
+					document.getElementById('main_txt').innerText = '용접2';
+					document.getElementById('menu_total').style.display = 'none';
+					document.getElementById('menu_weld_1').style.display = 'none';
+					document.getElementById('menu_weld_2').style.display = 'block';
+					document.getElementById('menu_weld_3').style.display = 'none';
+					document.getElementById('menu_weld_4').style.display = 'none';
+					document.getElementById('menu_video').style.display = 'none';
+				}
+				function menu_weld_3() {
+					document.getElementById('main_txt').innerText = '용접3';
+					document.getElementById('menu_total').style.display = 'none';
+					document.getElementById('menu_weld_1').style.display = 'none';
+					document.getElementById('menu_weld_2').style.display = 'none';
+					document.getElementById('menu_weld_3').style.display = 'block';
+					document.getElementById('menu_weld_4').style.display = 'none';
+					document.getElementById('menu_video').style.display = 'none';
+				}
+				function menu_weld_4() {
+					document.getElementById('main_txt').innerText = '용접4';
+					document.getElementById('menu_total').style.display = 'none';
+					document.getElementById('menu_weld_1').style.display = 'none';
+					document.getElementById('menu_weld_2').style.display = 'none';
+					document.getElementById('menu_weld_3').style.display = 'none';
+					document.getElementById('menu_weld_4').style.display = 'block';
+					document.getElementById('menu_video').style.display = 'none';
+				}
+				function menu_video() {
+					document.getElementById('main_txt').innerText = '작업 현장';
+					document.getElementById('menu_total').style.display = 'none';
+					document.getElementById('menu_weld_1').style.display = 'none';
+					document.getElementById('menu_weld_2').style.display = 'none';
+					document.getElementById('menu_weld_3').style.display = 'none';
+					document.getElementById('menu_weld_4').style.display = 'none';
+					document.getElementById('menu_video').style.display = 'block';
+				}
+			</script>
+
+	</body>
+</html>
